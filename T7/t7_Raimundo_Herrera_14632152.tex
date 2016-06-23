@@ -1,0 +1,83 @@
+\documentclass[letter]{article}
+
+\usepackage{MD_estilo}
+\DeclareMathSymbol{\mrq}{\mathord}{operators}{`'}
+\usepackage{hyperref}
+
+\nombre{Raimundo Herrera Sufán} % Aqui va el nombre del alumno
+\numtarea{7} % Aqui va el número de la tarea
+
+
+\begin{document}
+
+	\begin{pregunta}{1} % Aqui va el número de la pregunta
+		\begin{enumerate}
+% Pregunta 1.1
+		\item \underline{PD} Si $A$ y $B$ son conjuntos numerables, entonces $A \times B$ es un conjunto numerable.\\ \\
+		Si $A$ y $B$ son conjuntos numerables, entonces existen funciones biyectivas entre cada conjunto y los naturales, de modo que existen $f$ y $g$ tales que:
+		\begin{align*}
+			f: A \rightarrow \mathbb{N}\\
+			g: B \rightarrow \mathbb{N}
+		\end{align*}
+		Ahora, también se sabe que $\mathbb{N}$ y $\mathbb{N} \times \mathbb{N}$ son equinumerosos y numerables. Por esto, basta con encontrar una función biyectiva de $A \times B$ a $\mathbb{N} \times \mathbb{N}$, para demostrar entonces, que como $\mathbb{N} \times \mathbb{N}$ es numerable, $A \times B$ también lo es. Defino entonces $h: A \times B \rightarrow \mathbb{N} \times \mathbb{N}$ como:
+		$$h(a,b) = (f(a), g(b)) \text{  para todo } (a,b) \in A \times B$$
+		Claramente es una biyección, porque tanto $f$ como $g$ son biyectivas, por lo que existe $f^{-1}$ y $g^{-1}$ que van desde los naturales a cada conjunto respectivo, y entonces considerando $h^{-1}(c,d)=(f^{-1}(c), g^{-1}(d))$ se tiene la otra dirección y por ende la biyección. Habiendo encontrado una biyección entre $A \times B$ y $\mathbb{N} \times \mathbb{N}$, se concluye que, al ser $\mathbb{N} \times \mathbb{N}$ numerable, $A \times B$ también lo es.
+		\begin{flushright}$\blacksquare$\end{flushright}
+% Pregunta 1.2
+		\item \underline{PD} Todo subconjunto infinito de un conjunto numerable es numerable.\\\\
+		Sea $A$ un conjunto infinito numerable y $B$ un subconjunto infinito. Si $A$ es numerable, existe una biyección entre $A$ y $\mathbb{N}$, visto de otra forma, esto equivale a que existe una lista infinita o secuencia infinita de la forma $a_0,a_1,a_2,...,a_n, a_{n+1},...$ . Utilizando lo segundo, si $B$ es un subconjunto de $A$, entonces hay un elemento $a_{m1}$ que es el primer elemento de $A$ que está presente en $B$, también existe otro elemento de $A$, $a_{m2}$ tal que es el elemento que sigue a $a_{m1}$ en $B$, y así sucesivamente.\\
+		Por lo tanto como todos los elementos de $B$ tienen que estar en $A$ ya que es subconjunto, se puede seguir esa lógica para encontrar todos los elementos siguientes $a_{m3}$, $a_{m4}$, etc. Con eso, queda el conjunto $B={a_{m1},a_{m2},...}$ . Como todos esos elementos se pueden encontrar en $A$, el índice $i$ de $a_{mi}$ es un número natural y por ende la cantidad de elementos de $B$ es numerable. Esta idea define una función biyectiva tal que  $f: B \rightarrow \mathbb{N},\ f(a_{mi})=i$, teniendo entonces que es numerable.
+		\begin{flushright}$\blacksquare$\end{flushright}\vspace{30pt}
+% Pregunta 1.3
+		\item \underline{PD} $\mathcal{F}$ es no-numerable por diagonalización de Cantor.\\\\
+		Por contradicción asumamos que $\mathcal{F}$ es numerable. Si es numerable, entonces existe una lista o secuencia infinita en la que se pueden ubicar todos los elementos de $\mathcal{F}$. De ser así, se puede escribir cada función $f$ inyectiva de $\mathbb{N}$ a $\mathbb{N}$, en dicha lista.\\
+		La lista se vería así (cada fila es una función y cada columna es ella evaluada en un natural):
+		\begin{center}
+			\begin{tabular}{c|llll}
+				Función & \multicolumn{4}{l}{Evaluaciones}\\ \hline
+				$f_0$&$f_0(0)$&$f_0(1)$&$f_0(2)$&$...$\\
+				$f_1$&$f_1(0)$&$f_1(1)$&$f_1(2)$&$...$\\
+				$f_2$&$f_2(0)$&$f_2(1)$&$f_2(2)$&$...$\\
+				$\vdots$ & & \multicolumn{1}{c}{$\vdots$} & & $\ddots$
+			\end{tabular}
+		\end{center}
+		
+		Ahora se debe definir una función que a partir de las lista, sea no esté en la lista, pero si sea inyectiva de $\mathbb{N}$ a $\mathbb{N}$, por lo tanto sea contradicción que no esté en la lista.\\\\
+		Si se define la función $f_{no}(i)=\left\{\begin{array}{ll}f_0(0)+1 &\text{ si } i=0\\f_{no}(i-1) + f_i(i) &\text{ si } i>0\end{array}\right.$, siendo $i$ el índice de cada función, se tiene que es una función inyectiva de $\mathbb{N}$ a $\mathbb{N}$, la definición recursiva de la función se hace para que la función en sí sea inyectiva, porque de no definirse en base al elemento anterior, o alguna solución análoga, podría darse que esta función repita elementos y no sea "1 a 1".\\\\Ahora, habiendo definido una función inyectiva de los naturales a los naturales, esta debería estar en la lista inicial, sin embargo, esta función no aparece en la lista, ya que difiere de todas las funciones en al menos un elemento (el de la diagonal, es decir el $f_i(i)$). Por lo tanto, se llega a una contradicción ya que siendo una función que cumple las condiciones del conjunto $\mathcal{F}$, ésta no se encuentra en la lista infinita, $\rightarrow\leftarrow$, por lo que dicha lista no define al conjunto, siendo $\mathcal{F}$ no numerable. 
+		\begin{flushright}$\blacksquare$\end{flushright}
+		\end{enumerate}
+	\end{pregunta}
+
+	\begin{pregunta}{2}
+		\begin{enumerate}
+% Pregunta 2.1
+		\item \underline{PD} Si existen $f: A \rightarrow B$ inyectiva y $g: A \rightarrow B$ sobreyectiva, entonces $A$ es equinumeroso con $B$.\\\\
+		Tomando la función $g$, al ser esta sobreyectiva, quiere decir que desde $A$ se accede todos los elementos de $B$, es decir todos ellos tienen una preimagen. Al ser $g$ sobreyectiva, se puede tomar $g^{-1}: B \rightarrow A$, que no necesariamente es función ya que un elemento de $B$ podría tener dos imágenes en $A$. Sin embargo, si se eliminan aquellos elementos repetidos.\\
+		Así se define el conjunto de pares ordenados que representa una función inyectiva $h: B \rightarrow A$ de la siguiente forma:
+		$$h=\{(b,a)\ |\ g^{-1}(b)=a\ \wedge\ (g^{-1}(b)=a\ \wedge \ g^{-1}(b)=a' \rightarrow a=a')\}$$
+		Es decir, los pares $(b, a)$ tales que $g^{-1}(b)=a$ y si hay otro elemento $a'$ tal que $g^{-1}(b)=a'$, entonces solo se incluye si son iguales ($a=a'$).\\
+		Luego se tiene una función $h$ que es inyectiva de $B$ a $A$, y la función $f$ dada, de $A$ a $B$ inyectiva. Ahora, por el teorema de Cantor-Schröder-Bernstein, que dice que:
+		$$\exists f,g\ (f:A\to B\wedge g:B\to A)\ \wedge \ (f,g\ \text{inyectivas}) \rightarrow \exists h\ (h:A\to B)\ \wedge \ (h\ \text{biyectiva})$$
+		Se tiene entonces que, como existe una biyección entre $A$ y $B$, $A$ es equinumeroso con $B$.
+		\begin{flushright}$\blacksquare$\end{flushright}
+% Pregunta 2.2
+		\item \underline{PD} $\mathbb{N}^\omega$ es equinumeroso con $2^\mathbb{N}$.\\\\
+		Para demostrar eso, la idea es demostrar que $|\mathbb{N}^\omega| \leq |2^\mathbb{N}|$ y por hipótesis del continuo (asumiéndola como cierta aunque sea indecidible) demostrar también que $\mathbb{N}^\omega$ es no-numerable, para que teniendo que es no numerable, su cardinalidad sea mayor a la de los naturales, y que al ser su cardinalidad menor o igual a la de el conjunto potencia, se tenga que $|\mathbb{N}| \le |\mathbb{N}^\omega| \leq |2^\mathbb{N}|$, y por continuo, $|\mathbb{N}^\omega| = |2^\mathbb{N}|$.\\\\
+		En primer lugar entonces, para demostrar que $|\mathbb{N}^\omega| \leq |2^\mathbb{N}|$ considero que del conjunto $|\mathbb{N}^\omega|$, se puede hacer una función inyectiva que considere a cada elemento de la secuencia $a_0, a_1, ...$ como un elemento de otro conjunto, es decir $\{a_0, a_1, ...\}$. Este otro conjunto es claramente un subconjunto del conjunto potencia de los naturales ya que el conjunto potencia tiene en sus elementos a todos los naturales. Sabiendo entonces que $|\mathbb{N}^\omega| \subset 2^\mathbb{N}$, se entonces que su cardinalidad es menor o igual.\\\\
+		Ahora, si demuestro que es no numerable, por hipótesis del continuo, tendré que son equinumerosos. Para esto, por el argumento de Cantor, es fácil probar que es no-numerable ya que si argumentamos que existe una lista infinita de secuencias, y listamos todas las secuencias y les cambiamos un elemento de la diagonal por otro distinto, será posible definir otra secuencia infinita que no esté listada en la lista infinita, por lo tanto dicha lista infinita no definirá al conjunto, habrá contradicción, y entonces es no-numerable $\mathbb{N}^\omega$. Una posible función que haga esa diagonalización es aquella que entregue un 0 si el elemento de la diagonal es mayor que cero y un 1 si es cero.\\\\
+		Habiendo demostrado que $|\mathbb{N}^\omega| \leq |2^\mathbb{N}|$ y que $\mathbb{N}^\omega$ es no-numerable, se tiene que $|\mathbb{N}^\omega| = |2^\mathbb{N}|$ utilizando la hipótesis del continuo.
+		\begin{flushright}$\blacksquare$\end{flushright}
+% Pregunta 2.3
+		\item \underline{PD} $2^\mathbb{N}$ es equinumeroso con los reales $\mathbb{R}$.\\\\
+		Por el teorema CSB, enunciado anteriormente en \textbf{2.1}, basta con encontrar funciones inyectivas en ambos sentidos para demostrar lo pedido. Del conjunto potencia de los naturales a los reales, se define la función $f: 2^\mathbb{N} \rightarrow \mathbb{R}$ como la función que se construye tomando para cada conjunto $C \subset 2^\mathbb{N}$ un número decimal de la forma $0.w_0w_1w_2...$, donde cada $w_i$ representa a si el número $i$ está presente en el conjunto $C$. Esta función dará infinitos reales que irán al intervalo $[0,1)$, pero como se necesita únicamente que sea inyectiva, no es necesario que vayan a todo $\mathbb{R}$. Aparte sería fácil demostrar que los reales son equinumerosos con ese intervalo. \\\\
+		Ahora, teniendo $f$, falta determinar $g$ inyectiva, de los reales al conjunto potencia de los naturales. Esta función toma un número real en su representación binaria ($b_0b_1b_2$), que es única, y entrega los números de las posiciones de todos los 1's de aquella representacion. La función es $g(x)=\{x\in\mathbb{N}\ |\ b_i = 1\}$.\\\\
+		Es claro que es inyectiva porque la representación binaria es única y para cada elemento de los reales entonces hay una representación diferente, que tiene los unos en distintas posiciones, luego al generar un conjunto con dichas posiciones, este conjunto tendrá únicamente naturales, porque son posiciones, y al ser naturales, será un subconjunto del conjunto potencia de los naturales.\\\\
+		Habiendo encontrado ambas funciones inyectivas, se tiene entonces por CSB que existe una función biyectiva entre ambos conjuntos, y por ende, son equinumerosos.
+		\begin{flushright}$\blacksquare$\end{flushright}
+		Demostración basada en la de \url{https://books.google.cl/books?id=i7-bsfuIKIIC&pg=PA140}. 
+		
+		\end{enumerate}
+
+	\end{pregunta}
+
+\end{document}

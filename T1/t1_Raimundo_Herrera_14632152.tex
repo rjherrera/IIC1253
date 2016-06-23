@@ -1,0 +1,235 @@
+\documentclass[letter]{article}
+
+\usepackage{MD_estilo}
+\usepackage[table]{xcolor}
+\definecolor{lightred}{rgb}{1,.8,.8}
+\definecolor{lightblue}{rgb}{.6,.8,1}
+
+\nombre{Raimundo Herrera Sufán} % Aqui va el nombre del alumno
+\numtarea{1} % Aqui va el número de la tarea
+
+
+\begin{document}
+	
+	\begin{pregunta}{1} % Aqui se coloca el número de la pregunta
+		\begin{enumerate}
+		\item
+			\underline{PD}\ \ $\neg(p \leftrightarrow q) \equiv \neg p \leftrightarrow q$
+			\begin{align*}
+				\neg p \leftrightarrow q 
+				&\equiv (\neg p \rightarrow q) \wedge (q \rightarrow \neg p)
+				&\text{(Implicación)}\\
+				&\equiv (p \vee q) \wedge (\neg q \vee \neg p)&\text{(Implicación)}\\
+				&\equiv (p \wedge \neg q) \vee (p \wedge \neg p) \vee (q \wedge \neg q) \vee (q \wedge \neg p)&\text{(Distributividad)}\\
+				&\equiv (p \wedge \neg q) \vee 0 \vee 0 \vee (q \wedge \neg p)&\text{(Negación)}\\
+				&\equiv (p \wedge \neg q) \vee (q \wedge \neg p)&\text{(Identidad)}\\
+				&\equiv \neg(\neg p \vee q) \vee \neg(\neg q \vee p)&\text{(De Morgan)}\\
+				&\equiv \neg((\neg p \vee q) \wedge (\neg q \vee p))&\text{(De Morgan)}\\
+				&\equiv \neg((p \rightarrow q) \wedge (q \rightarrow p))&\text{(Implicación)}\\
+				&\equiv \neg(p \leftrightarrow q)&\text{(Implicación)}\\
+				&&\blacksquare\nonumber
+			\end{align*}
+		\item
+			Al encontrar las primeras fórmulas de la definición recursiva, se observa que de todos los términos pares para $i\geq 0$, se puede llegar una misma fórmula equivalente, y que de todos los términos impares, a otra equivalente. Los primeros términos pares son:\\
+
+			$\varphi_2:=((p \rightarrow q)\rightarrow p)\rightarrow p$\\
+			$\varphi_4:=((((p \rightarrow q)\rightarrow p)\rightarrow p)\rightarrow p)\rightarrow p$\\
+			$\varphi_6:=((((((p \rightarrow q)\rightarrow p)\rightarrow p)\rightarrow p)\rightarrow p)\rightarrow p)\rightarrow p$\\
+			
+			Estos términos se pueden todos reducir utilizando absorción, De Morgan e implicancia a una misma fórmula equivalente. Por ejemplo, tomando $\varphi_4$, se tiene:
+			\begin{align*}
+				((((p \rightarrow q)\rightarrow p)\rightarrow p)\rightarrow p)\rightarrow p
+				&\equiv ((((\neg p \vee q)\rightarrow p)\rightarrow p)\rightarrow p)\rightarrow p &\text{(Implicación)} \\
+				&\equiv (((\neg(\neg p \vee q)\vee p)\rightarrow p)\rightarrow p)\rightarrow p &\text{(Implicación)} \\
+				&\equiv ((((p \wedge \neg q)\vee p)\rightarrow p)\rightarrow p)\rightarrow p &\text{(De Morgan)} \\
+				&\equiv (((p) \rightarrow p)\rightarrow p)\rightarrow p &\text{(Absorción)} \\
+				&\equiv ((\neg p \vee p)\rightarrow p)\rightarrow p &\text{(Implicación)} \\
+				&\equiv ((1)\rightarrow p)\rightarrow p &\text{(Negación)} \\
+				&\equiv (p)\rightarrow p &\text{(Implicación)} \\
+				&\equiv p \rightarrow p
+			\end{align*}
+			Es fácil ver que con cualquier fórmula $\varphi$ par, es decir, para valores de $i$ impares, se puede reducir a una equivalente $p \rightarrow p$. Por lo tanto no depende de los valores de $p$, y es una tautología.\\
+			
+			Por otro lado las primeras fórmulas impares son:\\
+		
+			$\varphi_1:=(p \rightarrow q)\rightarrow p$\\
+			$\varphi_3:=(((p \rightarrow q)\rightarrow p)\rightarrow p)\rightarrow p$\\
+			$\varphi_5:=(((((p \rightarrow q)\rightarrow p)\rightarrow p)\rightarrow p)\rightarrow p)\rightarrow p$\\
+			
+			Estos términos se pueden reducir a una fórmula equivalente de forma similar. Por ejemplo, tomando $\varphi_3$, se tiene:
+			\begin{align*}
+				(((p \rightarrow q)\rightarrow p)\rightarrow p)\rightarrow p
+				&\equiv (((\neg p \vee q)\rightarrow p)\rightarrow p)\rightarrow p &\text{(Implicación)} \\
+				&\equiv ((\neg(\neg p \vee q)\vee p)\rightarrow p)\rightarrow p &\text{(Implicación)} \\
+				&\equiv (((p \wedge \neg q)\vee p)\rightarrow p)\rightarrow p &\text{(De Morgan)} \\
+				&\equiv ((p) \rightarrow p)\rightarrow p &\text{(Absorción)} \\
+				&\equiv (\neg p \vee p)\rightarrow p &\text{(Implicación)} \\
+				&\equiv (1)\rightarrow p &\text{(Negación)} \\
+				&\equiv (p) &\text{(Implicación)} \\
+				&\equiv p
+			\end{align*}
+			
+			Nuevamente es fácil ver que con cualquier fórmula $\varphi$ impar, es decir para valores de $i$ pares, se puede reducir a una equivalente $p$. Por lo tanto depende de los valores de $p$, de modo que no es una tautología.\\
+			
+			Esto se da por la cantidad de $p \rightarrow p$ que quedan luego de absorver $q$ al ir reduciendo. Dependiendo del número de $p's$, se irá sucesivamente alternando entre $1\rightarrow p$ y $p \rightarrow p$, de modo que en las fórmulas $\varphi$ pares ($i\geq 0$ impar), existirá una cantidad impar de $p's$ por lo que se reducirá siempre a $p \rightarrow p$, en cambio, en las $\varphi$ impares ($i\geq 0$ par), habrá una cantidad par de $p's$ y se podrá reducir siempre a $p$.\\
+			
+			De este modo, se concluye que la definición recursiva da lugar a fórmulas proposicionales tautológicas, para valores de $i$ impares y no tautológicas para valores de $i$ pares, partiendo de $i=0$ en ambos casos.
+
+		\end{enumerate}
+	\end{pregunta}
+	
+	\begin{pregunta}{2}
+		\begin{enumerate}
+		\item
+			Si $\Sigma \models \alpha$ o $\Sigma \models \beta$, entonces $\Sigma \models \alpha \vee \beta$.\\
+			
+			En este caso, se tiene que, o bien $\alpha$ es consecuencia lógica de $\Sigma$, o $\beta$ lo es. Es claro ver que si cualquiera de los dos es consecuencia lógica del conjunto de fórmulas proposicionales, también lo es $\alpha \vee \beta$. Esto se debe a que todas las valuaciones de $\alpha$ están contenidas en $\alpha \vee \beta$, es, de cierto modo, una amplificación disyuntiva, ya que $\alpha$ siempre podrá ser amplificado a $\alpha \vee \varphi_i$, sin que se reduzca la cantidad de valuaciones en la que se cumple la consecuencia si esque $\Sigma \models \alpha$. Lo mismo ocurre para $\beta$.\\
+			
+			Esta amplificación es, dicho de otra manera, una operación monótona. Visto en una tabla de verdad, se observa que las valuaciones verdaderas de $\alpha \vee \beta$ siempre se condicen con aquellas verdaderas de $\alpha$ o de $\beta$, o hay más, pero nunca menos. Para las tablas de verdad se considera que $\alpha$ o $\beta$ son consecuencias lógicas del conjunto $\Sigma(\varphi_0, ..., \varphi_n)$ respectivamente, por lo que las filas con $"..."$ indicaran valuaciones que hacen cierto el hecho de la consecuencia lógica antes establecida.
+			
+			\begin{center}
+				\begin{tabular}{ cc|ccc|cc } 
+				$\alpha$ & $\beta$ &$\varphi_0$ & $...$ & $\varphi_n$ & $\alpha$ & $\alpha \vee \beta$\\
+				\hline
+				0 & 0 & ... & ... & ... & 0 & 0\\
+				0 & 1 & ... & ... & ... & 0 & 1\\
+				1 & 0 & ... & ... & ... & 1 & 1\\
+				\rowcolor{lightblue} 1 & 1 & 1 & 1 & 1 & 1 & 1\\
+				\end{tabular}
+				\quad
+				\quad
+				\begin{tabular}{ cc|ccc|cc } 
+				$\alpha$ & $\beta$ &$\varphi_0$ & $...$ & $\varphi_n$ & $\beta$ & $\alpha \vee \beta$\\
+				\hline
+				0 & 0 & ... & ... & ... & 0 & 0\\
+				0 & 1 & ... & ... & ... & 1 & 1\\
+				1 & 0 & ... & ... & ... & 0 & 1\\
+				\rowcolor{lightblue} 1 & 1 & 1 & 1 & 1 & 1 & 1\\
+				\end{tabular}
+			\end{center}
+			
+			Es claro que para los casos donde se da la consecuencia lógica para $\alpha$, también se da para $\alpha \vee \beta$ (lo mismo sucede con $\beta$), por lo explicado anteriormente y lo explicitado en las tablas presentadas.\\
+			
+		\item
+			Si $\Sigma \models \alpha \vee \beta$, entonces $\Sigma \models \alpha$ o $\Sigma \models \beta$.\\
+			
+			Si se toma el conjunto $\Sigma(\varphi_1, \varphi_2)$ con $\varphi_1:=\alpha \vee \gamma$ y $\varphi_2:=\neg \gamma \vee \beta $, con $\gamma$ una fórmula proposicional cualquiera, se tiene la siguiente tabla de verdad.
+			
+			\begin{center}
+				\begin{tabular}{ ccc|cc|c } 
+				$\alpha$ & $\gamma$ & $\beta$ & $\alpha \vee \gamma$ & $\neg \gamma \vee \beta $ & $\alpha \vee \beta$\\
+				\hline
+				0 & 0 & 0 & 0 & 1 & 0\\
+				0 & 0 & 1 & 0 & 1 & 1\\
+				0 & 1 & 0 & 1 & 0 & 0\\
+				\rowcolor{lightblue} 0 & 1 & 1 & 1 & 1 & 1\\
+				\rowcolor{lightblue} 1 & 0 & 0 & 1 & 1 & 1\\
+				\rowcolor{lightblue} 1 & 0 & 1 & 1 & 1 & 1\\
+				1 & 1 & 0 & 1 & 0 & 1\\
+				\rowcolor{lightblue} 1 & 1 & 1 & 1 & 1 & 1
+				\end{tabular}
+			\end{center}
+			
+			Se observa que para cada fila en que $\varphi_1$ y $\varphi_2$ son verdaderas, $\alpha \vee \beta$ se hace verdadero, por lo tanto cumple con ser consecuencia lógica (resolución).\\
+			
+			Sin embargo, al realizar la misma tabla de verdad para $\alpha$ y para $\beta$, en vez de $\alpha \vee \beta$, se observa lo siguiente:
+			
+			\begin{center}
+				\begin{tabular}{ ccc|cc|c } 
+				$\alpha$ & $\gamma$ & $\beta$ & $\alpha \vee \gamma$ & $\neg \gamma \vee \beta $ & $\alpha$\\
+				\hline
+				0 & 0 & 0 & 0 & 1 & 0\\
+				0 & 0 & 1 & 0 & 1 & 0\\
+				0 & 1 & 0 & 1 & 0 & 0\\
+				\rowcolor{lightred} 0 & 1 & 1 & 1 & 1 & 0\\
+				1 & 0 & 0 & 1 & 1 & 1\\
+				1 & 0 & 1 & 1 & 1 & 1\\
+				1 & 1 & 0 & 1 & 0 & 1\\
+				1 & 1 & 1 & 1 & 1 & 1
+				\end{tabular}
+				\quad
+				\quad
+				\begin{tabular}{ ccc|cc|c } 
+				$\alpha$ & $\gamma$ & $\beta$ & $\alpha \vee \gamma$ & $\neg \gamma \vee \beta $ & $\beta$\\
+				\hline
+				0 & 0 & 0 & 0 & 1 & 0\\
+				0 & 0 & 1 & 0 & 1 & 1\\
+				0 & 1 & 0 & 1 & 0 & 0\\
+				0 & 1 & 1 & 1 & 1 & 1\\
+				\rowcolor{lightred} 1 & 0 & 0 & 1 & 1 & 0\\
+				1 & 0 & 1 & 1 & 1 & 1\\
+				1 & 1 & 0 & 1 & 0 & 0\\
+				1 & 1 & 1 & 1 & 1 & 1
+				\end{tabular}
+			\end{center}
+			
+			Y se ve que para ambos casos existe una fila en la que, si bien ambas proposiciones del conjunto $\Sigma$ son verdaderas, $\alpha$ o $\beta$ no lo es, de modo que no cumple el requisito de consecuencia lógica, por lo tanto $\Sigma\models\alpha\vee\beta$, pero $\Sigma \not\models \alpha$ y $\Sigma \not\models \beta$.\\
+			
+			De este modo, por medio del contraejemplo se muestra que existe un conjunto $\Sigma$ en el que se cumple que $\Sigma \models \alpha \vee \beta$ pero no se cumple ni $\Sigma \models \alpha$ ni $\Sigma \models \beta$.\\
+			
+		\item
+			Si $\{\varphi_1, ..., \varphi_n\} \models \alpha \wedge \beta$, entonces $\{\varphi_1, ..., \varphi_n, \alpha\} \models \beta$.\\
+			
+			Para este caso, si se considera que $\{\varphi_1, ..., \varphi_n\} \models \alpha \wedge \beta$, se tiene que la consecuencia es la validación de ambas fórmulas, $\alpha$ y $\beta$, por lo tanto $\alpha$ tiene como única posibilidad ser verdadero para una valuación donde se cumpla la premisa enunciada, al mismo tiempo que $\beta$ tiene que ser verdadero si $\alpha$ lo es.\\
+			
+			Así, una vez introducido $\alpha$ al conjunto, considerando que se cumple lo anterior, $\beta$ tiene que seguir siendo verdadero.\\
+			
+			Visto de otra forma, como se explicó en clases, por definición:
+			
+			\begin{center}
+				Si $\{\varphi_1,...,\varphi_m\} \models \varphi$, entonces $\{\varphi_1,...,\varphi_m, \vartheta\} \models \varphi$ para toda formula $\vartheta$.
+			\end{center}
+			
+			De modo que, aplicado al problema, como $\{\varphi_1, ..., \varphi_n\} \models \alpha \wedge \beta$, entonces $\{\varphi_1, ..., \varphi_n, \alpha\} \models \alpha \wedge \beta$, lo que significa que por consiguiente, también es consecuencia lógica de $\beta$, por lo explicado previamente.\\
+			
+			Además, como se señaló en una demostración anterior, la consecuencia $\beta$, es decir, cuando es una valuación verdadera, ocurre en igual cantidad o más ocasiones que $\alpha \wedge \beta$, por lo que no habrán casos en los que el nuevo conjunto sea consecuencia lógica únicamente de $\alpha \wedge \beta$ y no de $\beta$. En la tabla a continuación se explicita.
+			
+			\begin{center}
+				\begin{tabular}{ cc|cccc|cc } 
+				$\alpha$ & $\beta$ &$\varphi_0$ & $...$ & $\varphi_n$ & $\alpha$ & $\alpha \wedge \beta$ & $\beta$\\
+				\hline
+				0 & 0 & ... & ... & ... & 0 & 0 & 0\\
+				0 & 1 & ... & ... & ... & 0 & 0 & 1\\
+				1 & 0 & ... & ... & ... & 1 & 0 & 0\\
+				\rowcolor{lightblue} 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1\\
+				\end{tabular}
+			\end{center}
+			
+		\item
+			Si $\{\varphi_1, ..., \varphi_n, \alpha\} \models \beta$, entonces $\{\varphi_1, ..., \varphi_n\} \models \alpha \wedge \beta$.\\
+			
+			Si se toma un conjunto cualquiera de la forma $\{\varphi_1, ..., \varphi_n, \alpha\}$, tal como $\{\neg\alpha \vee \beta, \alpha\}$, es claro que $\beta$ es consecuencia lógica de ese conjunto. En la tabla se ve más claramente:
+			
+			\begin{center}
+				\begin{tabular}{ cc|cc|c } 
+				$\alpha$ & $\beta$ & $\neg\alpha \vee \beta$ & $\alpha$ & $\beta$\\
+				\hline
+				0 & 0 & 1 & 0 & 0\\
+				0 & 1 & 1 & 0 & 1\\
+				1 & 0 & 0 & 1 & 0\\
+				\rowcolor{lightblue} 1 & 1 & 1 & 1 & 1\\
+				\end{tabular}
+			\end{center}
+			
+			Ahora, es evidente que no se cumple lo buscado en el enunciado, ya que $\alpha \wedge \beta$ no es consecuencia lógica de, en este caso, $\{\neg\alpha \vee \beta\}$, la tabla en cuestión es:
+			
+			\begin{center}
+				\begin{tabular}{ cc|c|c } 
+				$\alpha$ & $\beta$ & $\neg\alpha \vee \beta$ & $\alpha \wedge \beta$\\
+				\hline
+				\rowcolor{lightred} 0 & 0 & 1 & 0\\
+				\rowcolor{lightred} 0 & 1 & 1 & 0\\
+				1 & 0 & 0 & 0\\
+				1 & 1 & 1 & 1\\
+				\end{tabular}
+			\end{center}
+			
+			Ya que muestra filas donde las valuaciones del conjunto de proposiciones son verdaderas, pero $\beta$ no lo es. Por lo que si bien $\{\neg\alpha \vee \beta, \alpha\} \models \beta$, ocurre que $\{\neg\alpha \vee \beta\} \not\models \alpha \wedge \beta$.\\
+			
+			Así, se concluye con el contraejemplo, que no necesariamente se cumple $\{\varphi_1, ..., \varphi_n\} \models \alpha \wedge \beta$, si $\{\varphi_1, ..., \varphi_n, \alpha\} \models \beta$.
+			
+		\end{enumerate}
+		
+	\end{pregunta}
+
+\end{document}

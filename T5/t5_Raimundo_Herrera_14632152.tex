@@ -1,0 +1,99 @@
+\documentclass[letter]{article}
+
+\usepackage{MD_estilo}
+\DeclareMathSymbol{\mrq}{\mathord}{operators}{`'}
+
+\nombre{Raimundo Herrera Sufán} % Aqui va el nombre del alumno
+\numtarea{5} % Aqui va el número de la tarea
+
+
+\begin{document}
+
+	\begin{pregunta}{1} % Aqui va el número de la pregunta
+		\begin{enumerate}
+		\item Definir la función $largo$ inductivamente.
+		
+		La función $largo$ de $T\rightarrow \mathbb{N}$ es:
+		\begin{align*}
+			&largo(x) = 1\\
+			&largo(f(t_1,t_2)) = 4 + largo(t_1) + largo(t_2)\ \ \ \text{para } t_1, t_2 \in T
+		\end{align*}
+		
+		Ya que, aparte del largo de $t_1$ y $t_2$, se debe agregar el largo (1) de cada símbolo adicional, es decir de los elementos $f, (, )$ y ','. La definición asumiendo que $x$ es el elemento de largo 1 que se presenta en la definición del conjunto $T$, tal como se diría que $\epsilon$ es el elemento de largo 0 de algun alfabeto.
+		
+		\item Definir la función $anidacion$ inductivamente.
+		
+		La función va de $T\rightarrow \mathbb{N}$ y es:
+		\begin{align*}
+			&anidacion(x) = 0\\
+			&anidacion(f(t_1, t_2)) = 1 + \text{max}\{anidacion(t_1), anidacion(t_2)\}\ \ \ \text{para } t_1, t_2 \in T
+		\end{align*}
+	
+		Ya que cada nivel o capa que se aumenta se debe sumar 1 a la anidación, pero esto es considerando solo uno de los términos, ya que en el enunciado se especifica que la función se refiere al mayor de los términos, y no a la suma como se podría pensar.
+		
+		\item 
+		
+		Para formar la función $h$, al tener una restricción de mayor o igual, se debe pensar en el peor caso, es decir, el mayor caso para la función $largo$, y la función $h$ debe superarla. La función $h$, depende de la funcion $anidacion$. Como la función anidación está definida con un máximo, hay que pensar en el caso en el que la función $largo$ entregue el mayor resultado a partir del mismo valor fijo de $anidacion$.
+		
+		Esto ocurre cuando ambos elementos que son argumentos de max, son iguales, ya que si uno es menor que el otro, quiere decir que su $largo$ es menor porque tendrá menos $f, (, )$ y ','. Por lo tanto se considera el caso en que ambos argumentos de max para el cálculo de anidación son iguales. Por lo tanto para este caso "peor", se tiene que la función $largo$ es $2*largo(t)+4$ para el peor caso, es decir, el mayor $largo$ para una anidación de $t$ dada.
+		
+		Ahora, se define la función inductivamente a partir de la información anterior. En particular el largo para el caso inicial es 1, por lo que la $h(anidacion(x))$ será 1, que es mayor o igual al $largo$. Además la parte inductiva se define a partir de $largo$ en el peor caso, ya que así no habrá ningun caso en el que se rompa la desigualdad. Se puede notar que $h$ será una función que lleva de la anidación al $largo$ (en el peor de los casos), por lo que se define la parte recursiva de la misma forma de $largo$, siendo esta vez $k$ el parámetro y el anterior es $k-1$, de modo que se llegue al caso base.
+		
+		\begin{align*}
+			& h(0) = 1\\
+			& h(k) = 2h(k-1) + 4
+		\end{align*}		 
+		
+		Ahora, hay que demostrar lo anterior utilizando inducción estructural: primero el caso base (CB), luego los casos recursivos, es decir los casos de capas superiores (CS).\\
+		
+		\underline{CB} $largo(x) \le h(anidacion(x)) \rightarrow 1 \le h(0)$, que, por la definición de $h$, se tiene $h(0)=1$, y $1\le 1$. Por lo tanto el caso base se cumple.\\
+		
+		\underline{CS} $largo(t') \le h(anidacion(t'))$
+		Se asume que $t'$ pertenece a $T$ y es una instancia un nivel superior a $t$, de la cual se asume que cumple con lo pedido, es decir, es la capa $n$, y se demostrará para $t'$, la capa $n+1$. Es decir, se asume que $largo(t) \le h(anidacion(t))$, para demostrar para $t'$.
+		
+		Por definición de $largo$, se tiene que, considerando el peor caso, donde $t'$ es $f(t,t)$, por lo tanto 1 nivel de $anidacion$ más:
+		$$largo(t') = 4 + largo(t) + largo(t) \le h(anidacion(t'))$$
+		Ahora por definicion de $h$:
+		$$4 + largo(t) + largo(t) \le 2h(anidacion(t')-1) + 4$$
+		Ahora por definición de $anidacion$:
+		$$4 + 2largo(t) \le 2h((anidacion(t)+1)-1) + 4$$
+		Y desarrollando/simplificando/despejando:
+		$$4 + 2largo(t) \le 2h(anidacion(t)) + 4$$
+		$$largo(t) \le h(anidacion(t))$$
+		Se llega justo a lo asumido por la capa $n$, y el proceso inverso es análogo.
+		
+		Entonces como de la capa $n$ se llega a las capas superiores, se cumple lo pedido y queda demostrado, sin perdida de generalidad, para casos donde $t_1$ sea una instancia menor a $t_2$ o viceversa y no suceda que $t_1=t_2=t$, la demostración funciona análogamente porque hay un máximo en la función $anidacion$, y no es el peor de los casos, por lo tanto el $largo$ será menor.
+		\begin{flushright}$\blacksquare$\end{flushright}
+		\end{enumerate}
+	\end{pregunta}
+
+	\begin{pregunta}{2}
+		Para demostrar esto, se pide utilizar inducción. Por la simple se tiene que hay que utilizar un caso base, una hipótesis inductiva y realizar el paso inductivo.\\\\
+		\underline{PD} Se puede hacer una secuencia de palabras en $\{0,1\}^n$ de la forma indicada tal que $u_0=u_{2^n}$, todas las palabras aparecen, y cada par de palabras seguidas son consecutivas.\\\\
+		\underline{CB} $P(1)$ = para $\{0,1\}^1$, se tiene que las palabras son 0 y 1, por lo que la cadena que se puede formar es 0,1,0 , donde $u_0 = u_{2}, \ 0=0$, 0 es consecutiva con 1, 1 es consecutiva con 0 y  aparecen ambas palabras de $\{0,1\}^1$. Por lo que el caso base se cumple.\\\\
+		Ahora, la hipótesis inductiva señala que se cumple para $n$, es decir $P(n)$ se cumple.\\
+		El paso inductivo consiste en asumir la hipótesis y demostrar $P(n+1)$.\\\\
+		\underline{PI} $P(n)\rightarrow P(n+1)$\\\\
+		Para demostrar esto, se mostrará una regla de formación a partir de $P(n)$ tal que $P(n+1)$ siga cumpliendo los requerimientos. Al hacer esto, siendo la demostración una demostración de existencia, queda demostrado lo pedido, ya que asumiendo que para $n$ se cumple $P(n)$ se puede llegar a $P(n+1)$.\\\\
+		En primer lugar se debe notar que a partir de $\{0,1\}^n$ se puede formar $\{0,1\}^{n+1}$ al concatenar al principio un 1 y un 0 para cada palabra preexistente en $\{0,1\}^n$. Así, se forma el doble de palabras, esto tiene sentido ya que la cantidad de concatenaciones de 0's y 1's, de largo $n$, es decir las palabras de largo $n$, en un conjunto $\{0,1\}^n$ viene dado por $2^n$, de modo que para $\{0,1\}^{n+1}$ se tiene que la cantidad de palabras es ${2^{n+1}}$, osea el doble.\\\\	
+		Ahora, dada esa regla de formación para $\{0,1\}^{n+1}$, se tiene que $\{0,1\}^{n+1}$ se forma a partir de $\{0,1\}^n$, es decir, si $u_0, u_1, ..., u_{2^n-1}$ son las palabras no repetidas de $\{0,1\}^n$, entonces:
+		$$\{0,1\}^{n+1} = \{1\cdot u_0, 1\cdot u_1, ..., 1\cdot u_{2^n-1},0\cdot u_0, 0\cdot u_1, ..., 0\cdot u_{2^n-1}\}$$
+		Luego, si tomamos una secuencia que cumple con lo pedido para $n$, que existe por la hipótesis inductiva, se tiene una secuencia del tipo $u_0, u_1, ..., u_{2^n}$. Si ahora a esa cadena le concatenamos, por el mismo procedimiento anterior solamente 1's al principio de cada palabra se tiene:
+		$$1\cdot u_0, 1\cdot u_1, ..., 1\cdot u_{2^n}$$
+		La cual sigue siendo una secuencia que cumple con ser consecutiva para cada par de elementos seguidos, ya que se les concatena lo mismo, por lo tanto siguen siendo consecutivos, y llamando a cada nuevo elemento como $v_i$, se tiene que que $v_0 = v_{2^n}$ ya que se concatena el mismo elemento a ambos elementos, manteniendo la igualdad.
+		Al realizar la misma operación a partir de la secuencia en $\{0,1\}^n$, pero esta vez con 0's, se tiene:
+		$$0\cdot u_0, 0\cdot u_1, ..., 0\cdot u_{2^n}$$
+		Que, por las mismas razones anteriores, sigue cumpliendo con las propiedades de secuencia antes señaladas. Se llamará a cada elemento de esta nueva cadena como $w_i$.
+		Notar que ambas cadenas nuevas definidas, en conjunto, tienen a todas las palabras de $\{0,1\}^{n+1}$, con dos elementos repetidos $v_0$ y $w_0$. Como cada una tiene la mitad de los elementos más 1, y se requiere que la secuencia contenga todos los elementos, se juntan ambas secuencias de $v_i$ y $w_i$, pero los elementos de la segunda secuencia en orden inverso, para que sean consecutivos (se puede invertir porque no se pierde la consecutividad). Además sin agregar el elemento $2^n$, que es el elemento repetido en ambas secuencias, se tiene:
+		$$v_0, v_1, ..., v_{2^n-1}, w_{2^n-1}, ..., w_1, w_0$$
+		Es fácil ver que $v_{2^n-1}$ y $w_{2^n-1}$ son consecutivos ya que, volviendo a términos de $u$, $v_{2^n-1}=1\cdot u_{2^n-1}$ y $w_{2^n-1}=0\cdot u_{2^n-1}$ son consecutivos ya que solo difieren en un término, el agregado. Por lo tanto la nueva cadena cumple con la propiedad de ser consecutiva. El mismo efecto se puede lograr uniendo ambas secuencias desde 0 hasta $2^n-1$ intercalando invertidamente los elementos, es decir, algo de la forma $0\cdot u_0, 1\cdot u_0, 1\cdot u_1, 0\cdot u_1, ...$, pero por simplicidad se prefiere la primera opción.\\\\
+		Llamando a los elementos de la nueva secuencia $x_i$, es fácil ver que no cumple con que $x_0$ sea igual a $x_{2^{n+1}}$, ya que no tiene $2^{n+1}+1$ elementos, es decir, el elemento $x_{2^{n+1}}$ no está presente. Sin embargo, si se agrega el elemento $x_0$ al final de la secuencia, se tiene lo siguiente:
+		$$v_0, v_1, ..., v_{2^n-1}, w_{2^n-1}, ..., w_1, w_0, v_0 \ \rightarrow \ x_0, x_1, ..., x_{2^{n+1}-1}, x_{2^{n+1}}$$
+		Donde falta verificar que $x_{2^{n+1}-1}$ sea consecutivo con $x_{2^{n+1}}$. Es fácil ver que si lo es, ya que $x_{2^{n+1}-1} = w_0 = 0\cdot u_0$ y $x_{2^{n+1}}= x_0 = v_0 = 1\cdot u_0$.
+		Ahora, como se fue formando, la secuencia resulta ser consecutiva, para cada par de elementos seguidos. Resulta tener a todos los elementos de $\{0,1\}^{n+1}$, ya que fueron construidos a partir de $\{0,1\}^n$. Y resulta cumplir $x_0=x_{2^{n+1}}$. Además se puede verificar que contiene $2^{n+1}+1$ elementos, ya que, como se eliminaba el elemento repetido de las cadenas (el $2^n$), se tenía entonces $2^n + 1 - 1$ para la cadena con 1's concatenados y la misma cantidad para la cadena con 0's concatenados. De modo que la nueva cadena, al unir las dos anteriores, tiene $2*2^n$ elementos, más el último elemento agregado $x_0$, de modo que tiene $2*2^n+1 = 2^{n+1}+1$ elementos, que es la cantidad que debería tener.\\\\
+		Este proceso, que parece tedioso por las explicaciones, se puede resumir en \textbf{(1)} Concatenar 0's y 1's a cada elemento de la secuencia anterior (existente gracias a $P(n)$), por separado; \textbf{(2)} Eliminar el elemento repetido (final) de cada una de las nuevas secuencias auxiliares formadas; \textbf{(3)} Unir ambas auxiliares invirtiendo la segunda y; \textbf{(4)} Agregar el primer elemento del resultado, al final de la nueva secuencia.
+		Siguiendo esos pasos, se obtiene una secuencia que cumple lo pedido en el enunciado, por lo tanto, mostrando como se puede formar una secuencia para $n+1$ a partir de la existencia de una para $n$, se demuestra inductivamente lo pedido.\begin{flushright}$\blacksquare$\end{flushright}
+
+	\end{pregunta}
+
+\end{document}

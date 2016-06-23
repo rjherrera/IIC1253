@@ -1,0 +1,84 @@
+\documentclass[letter]{article}
+
+\usepackage{MD_estilo}
+
+\nombre{Raimundo Herrera Sufán} % Aqui va el nombre del alumno
+\numtarea{2} % Aqui va el número de la tarea
+
+
+\begin{document}
+	
+	\begin{pregunta}{1} % Aqui se coloca el número de la pregunta
+		\begin{enumerate}
+		\item 
+			$\phi_x := \forall i. \exists j. A(i + j)$\\\\
+			La fórmula $\phi _x$ lo que señala es que para toda letra en la posición $i$ de la palabra infinita $w$, existe una letra posterior ubicada a una distancia cualquiera $j$, tal que esa letra es una $a$. De modo que hay infinitas $a$. Es posible decir lo mismo sin utilizar la suma al decir que para todo $i$ existe un $j$ mayor que $i$, tal que la letra en la posición $j$ es una $a$. Esto es: $\phi_x := \forall i. \exists j.\ j \geq i \wedge \neg(j=i) \wedge A(j)$. En ambos casos, y los posteriores, con los índices (para este caso $i, j$) pertenecientes al $\mathcal{I}(Dom)$.
+		
+		\item
+			$\phi_x := A(0) \wedge B(1) \wedge C(2)$ \\\\
+			La fórmula $\phi _x$ restringe únicamente a las 3 primeras letras de $w$, imponiendo que estas sean a la vez $a$, $b$ y $c$ respectivamente. Como se pide un orden los valores son fijos: 0 para la primera letra, $a$, 1 para la segunda letra, $b$, y 2 para la tercera letra, $c$.
+			
+		\item
+			$\phi_x := \exists i. [A(i) \wedge \exists n. ((\bigwedge\limits_{j=i+1}^n B(j)) \wedge C(n + 1))]$ \\\\
+			La fórmula $\phi _x$ señala en este caso que existe un $i$ tal que la letra en esa posición es una $a$, tal que justo después de ella existe una cantidad $n-i$ de letras $b$ seguidas y que finalmente hay una letra $c$ ubicada justo después de esas letras $b$, es decir, en la posición $n+1$.
+		
+		\item
+			$\phi_x := \forall i. (A(2i) \wedge B(2i+1))$ \\\\
+			La fórmula $\phi _x$ dice que para todo $i$ la letra ubicada en $2i$ (posición par por definición en los naturales) será una $a$, y que la letra ubicada en $2i + 1$ (posición impar por definición) será una $b$. Es fácil comprobar su correctitud ya que $i$ adquiere valores en los naturales, por lo que partiendo del cero se comprueba que los pares seran $a$ y los impares $b$.
+
+		\end{enumerate}
+	\end{pregunta}
+	
+	\begin{pregunta}{2}
+		\begin{enumerate}
+		\item
+			\underline{PD}\ \ $(\exists x. \varphi(x)) \wedge (\exists x. \psi(x)) \equiv \exists y. \exists z. (\varphi(y) \wedge \psi(z))$
+			\begin{align*}
+				\exists y. \exists z. (\varphi(y) \wedge \psi(z))
+				&\equiv \exists y. (\varphi(y) \wedge \exists z. \psi(z))
+				&\text{Ya que $z$ no aparece en $\varphi$, es decir,}\\
+				&&\text{utilizando la equivalencia}\\
+				&&\text{$B\wedge \exists x. A(x) \equiv \exists x. (B \wedge A(x))$}\\
+				&&\text{donde B puede depender de cualquier variable}\\
+				&&\text{distinta de $x$, como es el caso.}\\
+				&\equiv \exists y. (\varphi(y) \wedge \xi(z))
+				&\text{Donde $\xi(z):=\exists z. \psi(z)$}\\
+				&\equiv (\exists y. \varphi(y)) \wedge \xi(z)
+				&\text{Por la misma equivalencia anterior,}\\
+				&&\text{ya que $\xi$ no depende de $y$.}\\
+				&\equiv (\exists y. \varphi(y)) \wedge (\exists z. \psi(z))
+				&\text{Al reemplazar $\xi$}\\
+				&&\text{Y como $y$, $z$ son otras variables,}\\
+				&&\text{se tiene que, equivalentemente}\\
+				&\equiv (\exists x. \varphi(x)) \wedge (\exists x. \psi(x))
+				&&\blacksquare
+			\end{align*}
+
+		\item
+		
+			\underline{PD} Para toda formula $\varphi$, existe una formula $\varphi '$ en FNP tal que $\varphi\equiv\varphi'$.
+			
+			Para demostrar lo anterior, explicaré por que toda fórmula puede ser reducida a FNP, siendo la fórmula obtenida equivalente a la original. Para tener una fórmula en FNP, (1) no deben haber cuantificadores dentro de la fórmula $\psi$, y (2) fuera de esa fórmula solo pueden haber cuantificadores, sin negación. Es fácil ver que cualquier fórmula que no cumpla (2) se puede llevar a una que sí lo haga por medio de las equivalencias: 	$$\neg\exists x. \alpha(x) \equiv \forall x. \neg\alpha(x) $$
+				$$\neg\forall x. \alpha(x) \equiv \exists x. \neg\alpha(x)$$
+				
+			Luego, no es tan directo que (1) se pueda conseguir, pero análogamente a la equivalencia utilizada en el ejercicio anterior, se tiene que todo predicado que no depende de la variable del cuantificador de otra fórmula, puede ser embebido en dicha fórmula, esto es:
+			
+			$$\beta(x_i) \wedge \exists x. \alpha(x_j) \equiv \exists x. (\beta(x_i) \wedge \alpha(x_j)), \text{\ \ \ \ \ con $x_i\neq x_j$.}$$
+			$$\beta(x_i) \vee \exists x. \alpha(x_j) \equiv \exists x. (\beta(x_i) \vee \alpha(x_j)), \text{\ \ \ \ \ con $x_i\neq x_j$.}$$
+			$$\beta(x_i) \wedge \forall x. \alpha(x_j) \equiv \forall x. (\beta(x_i) \wedge \alpha(x_j)), \text{\ \ \ \ \ con $x_i\neq x_j$.}$$
+			$$\beta(x_i) \vee \forall x. \alpha(x_j) \equiv \forall x. (\beta(x_i) \vee \alpha(x_j)), \text{\ \ \ \ \ con $x_i\neq x_j$.}$$ \\
+			
+			Teniendo en cuenta que $\beta$ tiene la restricción de no depender de la misma variable cuantificada en la fórmula a la cual ingresa. Y para evitar confusiones, es bueno usar la equivalencia (3):
+			
+			$$\forall x. \alpha(x) \equiv \forall y. \alpha(y)$$
+			$$\exists x. \alpha(x) \equiv \exists y. \alpha(y)$$
+			
+			Por otro lado, se ve que las cuatro equivalencias antes mencionadas para ingresar un predicado a una fórmula cuantificada, fueron mostradas con los operadores $\vee$ y $\wedge$, y por extensión el operador $\neg$, por lo explicado anteriormente. Pero esto no reduce en nada el alcance de la demostración, ya que los otros operadores pueden ser reducidos a estos, porque, como se vió en la ayudantía, el conjunto $\{\neg, \vee, \wedge\}$ es funcionalmente completo (4).
+			
+			De este modo, como (1) es posible extraer todos los cuantificadores de las fórmulas ya que se pueden ir introduciendo los predicados a ellos, (2) es posible ir introduciendo las negaciones hacia las fórmulas cuantificadas, (3) cuidando la utilización de las variables y sustituyéndolas de ser necesario, y se tiene que (4) los operadores que se utilizaron en la demostración son funcionalmente completos, se demuestra que para toda formula $\varphi$, existe una formula $\varphi '$ en FNP equivalente. \flushright $\blacksquare$
+			
+		\end{enumerate}
+		
+	\end{pregunta}
+
+\end{document}

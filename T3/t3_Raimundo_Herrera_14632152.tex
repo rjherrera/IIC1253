@@ -1,0 +1,107 @@
+\documentclass[letter]{article}
+
+\usepackage{MD_estilo}
+\usepackage{enumerate}
+\usepackage{multicol}
+
+\nombre{Raimundo Herrera Sufán} % Aqui va el nombre del alumno
+\numtarea{3} % Aqui va el número de la tarea
+
+
+\begin{document}
+	
+	\begin{pregunta}{1} % Aqui se coloca el número de la pregunta
+		\begin{enumerate}
+		\item $(A \cup B) \times (C \cup D) = (A \times C) \cup (B \times D)$\vspace{0.5em}\\
+		Si tomamos los conjuntos $A=\{0\}, B=\{1\}, C=\{2\}, D=\{3\}$, al reemplazar, y desarrollar, se tiene que la afirmación, para este caso, se transforma en:
+		\begin{align*}
+			(\{0\} \cup \{1\}) \times (\{2\} \cup \{3\}) &= (\{0\} \times \{2\}) \cup (\{1\} \times \{3\})\\
+			\{0,1\}) \times (\{2,3\} &= \{(0,2)\} \cup \{(1,3)\}\\
+			\{(0,2),(0,3),(1,2),(1,3)\} &= \{(0,2),(1,3)\}
+		\end{align*}
+		Pero evidentemente,
+			$$\{(0,2),(0,3),(1,2),(1,3)\} \neq \{(0,2),(1,3)\}$$
+		Por lo que, por medio del contra-ejemplo, se ve claramente que la afirmación es falsa.
+		
+		\item $(A \setminus B) \setminus (C \setminus D) = (A \setminus C) \setminus (B \setminus D)$\vspace{0.5em}\\
+		Sean $A=\{0,1\}, B=\{0,2\}, C=\{1,3\}, D=\{0,1,4\}$, conjuntos. Al reemplazarlos en la afirmación, y desarollar, se tiene que:
+		\begin{align*}
+			(\{0,1\} \setminus \{0,2\}) \setminus (\{1,3\} \setminus \{0,1,4\}) &= (\{0,1\} \setminus \{1,3\}) \setminus (\{0,2\} \setminus \{0,1,4\})\\
+			\{1\} \setminus \{3\} &= \{0\} \setminus \{2\}\\
+			\{1\} &= \{0\}
+		\end{align*}
+		Pero claramente,
+			$$\{1\} \neq \{0\}$$
+		Por lo tanto, usando el contra-ejemplo se demuestra que la afirmación es falsa.
+
+		\item $(A \setminus B) \times (C \setminus D) = (A \times C) \setminus (B \times D)$\vspace{0.5em}\\ 
+		Tomando los conjuntos $A=\{0,1\}, B=\{0,2\}, C=\{1,3\}, D=\{1,4\}$, se tiene que al reemplazar en la afirmación y desarrollar, se llega a:
+		\begin{align*}
+			(\{0,1\} \setminus \{0,2\}) \times (\{1,3\} \setminus \{1,4\}) &= (\{0,1\} \times \{1,3\}) \setminus (\{0,2\} \times \{1,4\})\\
+			\{1\} \times \{3\} &= \{(0,1),(0,3),(1,1),(1,3)\} \setminus \{(0,1),(0,4),(2,1),(2,4)\}\\
+			\{(1,3)\} &= \{(0,3),(1,1),(1,3)\}\\
+		\end{align*}
+		Pero se ve que,
+			$$\{(1,3)\} \neq \{(0,3),(1,1),(1,3)\}$$
+		De este modo, con el contra-ejemplo se prueba que la afirmación es falsa.
+		\end{enumerate}
+	\end{pregunta}
+	
+	\begin{pregunta}{2}
+		\begin{enumerate}
+		\item
+			Se pueden formar 20 anticadenas, las cuales son:
+			\begin{multicols}{3}
+				\begin{enumerate}[(1)]
+					\item $\{\{1,2,3\}\}$
+					\item $\{\{1,2\}, \{1,3\}, \{2,3\}\}$
+					\item $\{\{1,2\}, \{1,3\}\}$
+					\item $\{\{1,2\}, \{2,3\}\}$
+					\item $\{\{1,3\}, \{2,3\}\}$
+					\item $\{\{1,2\}, \{3\}\}$
+					\item $\{\{1,3\}, \{2\}\}$
+					\item $\{\{2,3\}, \{1\}\}$
+					\item $\{\{1,2\}\}$
+					\item $\{\{1,3\}\}$
+					\item $\{\{2,3\}\}$
+					\item $\{\{1\}, \{2\}, \{3\}\}$
+					\item $\{\{1\}, \{2\}\}$
+					\item $\{\{1\}, \{3\}\}$
+					\item $\{\{2\}, \{3\}\}$
+					\item $\{\{1\}\}$
+					\item $\{\{2\}\}$
+					\item $\{\{3\}\}$
+					\item $\{\varnothing\}$
+					\item $\varnothing$
+				\end{enumerate}
+			\end{multicols}
+			De modo que cada una de ellas cumple con la condición de ser subconjunto de $\mathcal{P}(S)$, y que para todo $A, B \in C$ con $A \neq B$ se cumple que $A \nsubseteq B$ y $B \nsubseteq A$. $\mathcal{P}(S)$ en este caso es:$$\mathcal{P}(S)=\{\varnothing, \{1\}, \{2\}, \{3\}, \{1,2\}, \{1,3\}, \{2,3\}, \{1,2,3\}\}$$
+			En particular, todas las anticadenas son conjuntos presentes en $\mathcal{P}(\mathcal{P}(S))$, es decir del conjunto potencia del conjunto potencia de $S$, por lo que viendo todo ese conjunto potencia $"mayor"$, se encuentran todas las anticadenas, escogiendo aquellos conjuntos que cumplen la condición requerida.\\Se inclute el vacío, tanto $\varnothing$, como $\{\varnothing\}$ ya que ambos casos cumplen, porque se sabe que $\varnothing$ es subconjunto de todos conjuntos, en particular de $\mathcal{P}(S)$ (y la implicancia sobre elementos presentes en $A$ y no en $B$, y viceversa, se cumple por que es falso el lado izquierdo). Para el caso de $\{\varnothing\}$ ocurre lo mismo, pero sabemos que ese conjunto no es subconjunto de todos los subconjuntos, pero en particular, el conjunto potencia si contiene al vacío, por lo que sí es subconjunto. En ambos casos la condición de $A\nsubseteq B \wedge B \nsubseteq A$, no se cumpliría porque el vacío es subconjunto de todos los conjuntos, pero se impone la condición de que $A\neq B$, por lo que sí es valida su inclusión.
+
+		\item
+			\underline{PD}\ \ $\mathcal{A}$ es un sistema separador si, y solo si, $\vert\mathcal{A}^*\vert = n$ y $\mathcal{A}^*$ es una anti-cadena.\\
+			
+			Se pide demostrar, en este caso, una relación $si,\ y\ solo\ si$, por lo que es una demostración bidireccional, es decir, visto en lógica, una doble implicancia.
+			
+			Se puede traducir a $\mathcal{A}$ es un sistema separador $\leftrightarrow$ $\vert\mathcal{A}^*\vert = n$ y $\mathcal{A}^*$ es una anti-cadena. Para reducir la notación, llamemos A, B y C a las proposiciones. Esto es: $A:=\mathcal{A}$ es un sistema separador, $B:=\vert\mathcal{A}^*\vert = n$, y $C:=\mathcal{A}^*$ es una anti-cadena. Por lo que se tiene $A \leftrightarrow B \wedge C$, teniendo que demostrar $A \rightarrow B \wedge C$ y $A \leftarrow B \wedge C$. Por lo que:\\ \\ \\
+			
+			($\Rightarrow$) Si suponemos que $\mathcal{A}$ es un sistema separador, entonces, la cantidad de elementos de $\mathcal{A}^*$ es $n$ y $\mathcal{A}^*$ es una anti-cadena. Para demostrar, utilizamos el método del contrapositivo, de modo que $A \rightarrow B \wedge C$, pasa a ser $\neg A \rightarrow \neg B \vee \neg C$. Con esto, basta demostrar que si un sistema no es separador, o bien el conjunto dual no es anti-cadena, o la cantidad de elementos del conjunto no es $n$.
+			
+			Sean $A, B$ conjuntos en $\mathcal{A}$. Supongamos que $$\forall A \in \mathcal{A}, \forall B \in \mathcal{A}, \exists i\neq j.\ (i \in A \wedge i \in B) \vee (j \in A \wedge j \in B)$$ 
+			Es decir, $\mathcal{A}$ no es separador. De este modo, en particular, si $\vert A \vert = 1$ y $\vert B \vert > 1$ (igual para otros casos, pero para simplificar la demostración), tenemos que el conjunto dual, tendrá a un número en ambos conjuntos, por lo que el $B_i$ con $i$ igual al número presente en ambos conjuntos, será igual al conjunto que tiene el número de la posición de cada conjunto que contienen a $i$. Así como $\vert B \vert > 1$, existirá un $j \in B$ tal que $j \notin A$. Por lo que el conjunto dual contendrá un conjunto que solo tendrá la posición de $B$ en el conjunto separador, de modo que será un conjunto de un elemento. Pero sabemos que esa posición ya está en otro elemento del conjunto dual, por lo que, el nuevo conjunto $B_j$ es subconjunto de $B_i$, por lo que el conjunto dual $\mathcal{A}^*$ no puede ser una anticadena por la definición de la misma. Ejemplificando lo anterior, se tiene que:
+			
+			Si $\mathcal{A}=\{\{1\}, \{1,2\}\}$ no separador, el dual de dicho conjunto es $\mathcal{A}^*=\{\{1,2\}, \{2\}\}$ y $\{2\} \in \{1,2\}$, por lo que no es anticadena.\\
+			
+			($\Leftarrow$) Si suponemos que $\mathcal{A}^*$ es anti-cadena y que $\vert\mathcal{A}^*\vert=n$, entonces, $\mathcal{A}$ no es separador.
+			
+			De modo similar, esto equivale a demostrar que si $\mathcal{A}^*$ no es anti-cadena, o $\vert\mathcal{A}^*\vert\neq n$, entonces $\mathcal{A}$ no es separador ($\neg B \vee \neg C \rightarrow \neg A$). Por lo que con tomar una de las dos proposiciones de la izquierda como falsa, basta para que se cumpla la disyunción, de modo que eso debe implicar la negación de lo de la derecha, demostrandose lo pedido.
+			
+			Sean $i, j$ números distintos. Supongamos que el conjunto dual $\mathcal{A}^*$ no es anti-cadena, de modo que existe un $B_j$ y un $B_i$ tal que $B_j \subseteq B_i$. Así el conunto $\mathcal{A}$ que da origen a ese conjunto dual, tiene que tener al menos 1 conjunto que tenga como elementos a $j$ y a $i$, y alguno que tenga a $i$ pero no a $j$ (considerando que $B_j \neq B_i$). De este modo, el conjunto $\mathcal{A}$ no cumple la condición para ser separador, ya que se tiene algun $i\neq j$ que está presente en dos conjuntos a la vez. En particular, si esos son los únicos dos conjuntos, no existe un par de conjuntos $C, D$ tal que para $i\neq j$, $i$ esté en $C\setminus D$ y $j$ esté en $D\setminus C$, (lo mismo para más conjuntos) de modo que $\mathcal{A}$ no es separador.
+			
+			\flushright$\blacksquare$
+			
+		\end{enumerate}
+		
+	\end{pregunta}
+
+\end{document}
